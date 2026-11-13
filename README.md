@@ -1,7 +1,7 @@
 # Achilles website
 
-Static homepage for [Achilles](https://achilles.mandrusia.tech), published from `main` via GitHub Pages.
+The Achilles organisation homepage is hosted via GitHub Pages from `main` and uses `achilles.mandrusia.tech` as its custom domain.
 
-The theme button follows the device setting until someone chooses light or dark. The choice is saved in local storage. Both contact email links open the visitor's email application.
+Features include responsive Signal branding, Arc-blue accents, a system-aware light/dark toggle (saved locally), real repository links, and the two maintainer contact emails. On systems that allow motion, entrance sequences, scroll-triggered section reveals, a scroll-position indicator, a condensed sticky header, and hover interactions are enabled. With reduced motion enabled or JavaScript disabled, the content is fully visible.
 
-The `CNAME` file must remain in the repository for `achilles.mandrusia.tech`.
+The `CNAME` file must remain in the repository to preserve the custom domain.
