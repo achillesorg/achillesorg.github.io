@@ -1,7 +1,7 @@
 # Achilles website
 
-Official site for https://achilles.mandrusia.tech, hosted on GitHub Pages from the `main` branch.
+Static homepage for [Achilles](https://achilles.mandrusia.tech), published from `main` via GitHub Pages.
 
-The site is one HTML file with inline CSS, no framework, trackers, or JavaScript. It uses the original Achilles Signal SVG files in `assets/`. Accent colour: `#4F8CFF`.
+The theme button follows the device setting until someone chooses light or dark. The choice is saved in local storage. Both contact email links open the visitor's email application.
 
-To edit the site, update `index.html` and commit to `main`. GitHub Pages deploys the change. Keep the `CNAME` file to preserve the custom domain.
+The `CNAME` file must remain in the repository for `achilles.mandrusia.tech`.
