@@ -1,7 +1,7 @@
 {
   "name": "Achilles",
   "short_name": "Achilles",
-  "description": "Achilles \u2014 open technology organisation",
+  "description": "Achilles open-source software",
   "icons": [
     {
       "src": "icon-192.png",
@@ -22,8 +22,8 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#0B0D11",
-  "background_color": "#0B0D11",
+  "theme_color": "#101217",
+  "background_color": "#101217",
   "display": "standalone",
   "start_url": "/"
 }
