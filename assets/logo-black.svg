@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 256" width="1080" height="256" role="img" aria-labelledby="title">
+  <title id="title">Achilles Signal — horizontal logo</title>
+  <g fill="#0B0D11" transform="translate(12 0)"><path d="M36 41 H72 L171 127 L72 213 H36 L135 127 Z"/>
+<path d="M100 41 H133 L231 127 L133 213 H100 L198 127 Z"/>
+<path d="M150 229 H232 V248 H150 Z"/></g>
+  <g id="wordmark" fill="#0B0D11" transform="translate(300 180)">
+    <g transform="translate(0.000,0) scale(0.07072,-0.07072)">
+      <path d="M9 0H341L449 325H1006L1110 0H1451L928 1490H532ZM532 571 583 725C631 877 677 1029 731 1214C784 1029 830 877 876 725L926 571Z"/>
+    </g>
+    <g transform="translate(107.070,0) scale(0.07072,-0.07072)">
+      <path d="M771 -24C1120 -24 1380 191 1427 523H1117C1079 348 951 248 775 248C521 248 373 441 373 744C373 1049 522 1242 775 1242C952 1242 1081 1141 1116 965H1427C1380 1298 1120 1514 771 1514C361 1514 63 1220 63 744C63 271 362 -24 771 -24Z"/>
+    </g>
+    <g transform="translate(215.979,0) scale(0.07072,-0.07072)">
+      <path d="M111 0H419V628H1052V0H1359V1490H1052V892H419V1490H111Z"/>
+    </g>
+    <g transform="translate(323.756,0) scale(0.07072,-0.07072)">
+      <path d="M419 1490H111V0H419Z"/>
+    </g>
+    <g transform="translate(364.986,0) scale(0.07072,-0.07072)">
+      <path d="M111 0H1096V264H419V1490H111Z"/>
+    </g>
+    <g transform="translate(449.355,0) scale(0.07072,-0.07072)">
+      <path d="M111 0H1096V264H419V1490H111Z"/>
+    </g>
+    <g transform="translate(533.724,0) scale(0.07072,-0.07072)">
+      <path d="M111 0H1180V264H419V624H1123V881H419V1226H1180V1490H111Z"/>
+    </g>
+    <g transform="translate(625.518,0) scale(0.07072,-0.07072)">
+      <path d="M675 -24C1042 -24 1266 153 1266 440C1266 664 1125 795 807 862L664 893C481 933 407 984 407 1076C407 1185 514 1261 666 1261C826 1261 931 1174 942 1033H1230C1221 1333 1008 1514 665 1514C326 1514 99 1332 99 1061C99 848 242 711 537 647L694 613C883 572 961 516 961 420C961 304 848 229 677 229C486 229 371 325 367 489H70C70 165 293 -24 675 -24Z"/>
+    </g>
+  </g>
+</svg>

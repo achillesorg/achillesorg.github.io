@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title">
+  <title id="title">Achilles Signal — terminal chevrons and cursor</title>
+  <rect x="0" y="0" width="256" height="256" fill="#0B0D11" rx="50"/>
+  <g fill="#FFFFFF" transform="translate(20.8 12.4) scale(0.8)"><path d="M36 41 H72 L171 127 L72 213 H36 L135 127 Z"/>
+<path d="M100 41 H133 L231 127 L133 213 H100 L198 127 Z"/>
+<path d="M150 229 H232 V248 H150 Z"/></g>
+</svg>
