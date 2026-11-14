@@ -32,16 +32,16 @@
   <style>
     :root {
       color-scheme: light;
-      --bg: #f8f9fc;
-      --section: #ffffff;
-      --text: #171a22;
-      --muted: #535d6b;
-      --rule: #dce2ec;
-      --hover: #eef3ff;
-      --blue: #4f8cff;
-      --blue-hover: #3275ef;
-      --focus: #3275ef;
-      --button-text: #111827;
+      --bg: #fffcec;
+      --section: #fffcec;
+      --text: #000000;
+      --muted: #696969;
+      --rule: #e1e0ce;
+      --hover: #f5f4e2;
+      --blue: #3139fb;
+      --blue-hover: #2404aa;
+      --focus: #3139fb;
+      --button-text: #ffffff;
     }
     :root[data-theme="dark"] {
       color-scheme: dark;
@@ -51,10 +51,10 @@
       --muted: #b0b7c3;
       --rule: #2c313d;
       --hover: #1b2432;
-      --blue: #4f8cff;
-      --blue-hover: #77a7ff;
-      --focus: #77a7ff;
-      --button-text: #101621;
+      --blue: #3139fb;
+      --blue-hover: #96c4ff;
+      --focus: #96c4ff;
+      --button-text: #ffffff;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme]) {
@@ -65,10 +65,10 @@
         --muted: #b0b7c3;
         --rule: #2c313d;
         --hover: #1b2432;
-        --blue: #4f8cff;
-        --blue-hover: #77a7ff;
-        --focus: #77a7ff;
-        --button-text: #101621;
+        --blue: #3139fb;
+        --blue-hover: #96c4ff;
+        --focus: #96c4ff;
+        --button-text: #ffffff;
       }
     }
     *, *::before, *::after { box-sizing: border-box; }
@@ -76,9 +76,9 @@
     body { min-width: 280px; margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
     a { color: inherit; }
     :is(a,button):focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-    ::selection { background: var(--blue); color: #101621; }
+    ::selection { background: var(--blue); color: #ffffff; }
     .container { width: min(1090px, calc(100% - 88px)); margin-inline: auto; }
-    .skip { position: absolute; top: -120px; left: 18px; background: var(--blue); color: #101621; padding: 12px 16px; z-index: 100; }
+    .skip { position: absolute; top: -120px; left: 18px; background: var(--blue); color: #ffffff; padding: 12px 16px; z-index: 100; }
     .skip:focus { top: 18px; }
     .header { border-bottom: 1px solid var(--rule); }
     .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -111,7 +111,7 @@
     .hero-copy { max-width: 585px; margin: 0; color: var(--muted); font-size: clamp(18px, 1.8vw, 21px); line-height: 1.6; letter-spacing: -.015em; }
     .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 29px; margin-top: 37px; }
     .action { min-height: 51px; border: 1px solid var(--blue); border-radius: 6px; display: inline-flex; align-items: center; gap: 31px; justify-content: center; padding: 0 20px; color: var(--button-text); background: var(--blue); font-size: 14px; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease; }
-    .action:hover { transform: translateY(-2px); background: #77a7ff; }
+    .action:hover { transform: translateY(-2px); background: #2404aa; }
     .action svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2; fill: none; }
     .minor-link { font-size: 14px; font-weight: 550; text-underline-offset: 6px; text-decoration-color: var(--muted); }
     .minor-link:hover { color: var(--blue-hover); }
@@ -321,7 +321,7 @@
         const dark = current() === 'dark';
         button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
         button.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
-        meta.setAttribute('content', dark ? '#101217' : '#f8f9fc');
+        meta.setAttribute('content', dark ? '#101217' : '#fffcec');
       };
       button.addEventListener('click', () => {
         const next = current() === 'dark' ? 'light' : 'dark';
