@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Achilles builds open-source software, including FlowDE. Explore projects and get in touch with the maintainers.">
+  <meta name="description" content="Achilles builds open-source software, including Kiln GNU/Linux and FlowDE. Explore projects and contact the maintainers.">
   <meta name="theme-color" content="#101217">
   <link rel="canonical" href="https://achilles.mandrusia.tech/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Achilles">
   <meta property="og:title" content="Achilles | Open-source software">
-  <meta property="og:description" content="Open-source projects from Achilles, including FlowDE.">
+  <meta property="og:description" content="Open-source projects from Achilles, including Kiln GNU/Linux and FlowDE.">
   <meta property="og:url" content="https://achilles.mandrusia.tech/">
   <meta property="og:image" content="https://achilles.mandrusia.tech/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -125,10 +125,13 @@
     .repo:hover, .repo:focus-visible { background: var(--hover); border-color: var(--blue); box-shadow: 0 9px 26px rgb(28 59 118 / .08); translate: 0 -3px; }
     .repo::before { content: ''; position: absolute; inset: auto auto 0 0; width: 0; height: 3px; background: var(--blue); transition: width .55s cubic-bezier(.16,1,.3,1); }
     .repo:hover::before, .repo:focus-visible::before { width: 100%; }
+    .repo h3, .repo p { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+    .repo:hover h3, .repo:focus-visible h3 { transform: translateX(4px); }
+    .repo:hover p, .repo:focus-visible p { transform: translateX(2px); }
     .repo h3 { margin: 0; font-size: clamp(24px,3vw,31px); font-weight: 630; letter-spacing: -.04em; }
     .repo p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--muted); max-width: 440px; }
     .repo .arrow { width: 42px; height: 42px; display: grid; place-items: center; justify-self: end; border: 1px solid var(--rule); border-radius: 50%; color: var(--blue-hover); font-size: 25px; line-height: 1; transition: transform .5s cubic-bezier(.2,.85,.2,1), background .25s ease, color .25s ease, border-color .25s ease; }
-    .repo:hover .arrow, .repo:focus-visible .arrow { transform: translate(3px,-3px) rotate(12deg); color: var(--button-text); background: var(--blue); border-color: var(--blue); }
+    .repo:hover .arrow, .repo:focus-visible .arrow { transform: translate(3px,-2px); color: var(--button-text); background: var(--blue); border-color: var(--blue); }
     .detail-section { border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(160px,.45fr) minmax(0,1fr); align-items: start; gap: 38px; padding-block: 54px; }
     .detail-section h2 { font-size: clamp(26px,3.2vw,34px); }
     .about p { max-width: 690px; font-size: clamp(17px,2vw,20px); line-height: 1.65; color: var(--muted); margin: 0; }
@@ -196,9 +199,13 @@
     .nav a:hover::after, .nav a:focus-visible::after { transform: scaleX(1); }
     .theme-toggle:hover svg { transform: rotate(18deg); }
     .theme-toggle svg { transition: transform .45s cubic-bezier(.2,.9,.2,1); }
-    h1 { position: relative; padding-bottom: 26px; }
-    h1::after { content: ''; display: block; position: absolute; left: 0; bottom: 0; width: 70px; height: 4px; background: var(--blue); border-radius: 3px; transform: scaleX(0); transform-origin: left center; transition: transform 1s cubic-bezier(.16,1,.3,1) .3s; }
-    h1.in-view::after { transform: scaleX(1); }
+    /* A native-text-friendly selection wipe. Only the visual copy is overlaid. */
+    .hero-word { position: relative; display: inline-block; white-space: nowrap; isolation: isolate; }
+    .hero-selection { position: absolute; inset: 0; background: var(--blue); color: var(--button-text); overflow: hidden; pointer-events: none; clip-path: inset(0 100% 0 0); }
+    .hero-selection::before { content: "Achilles."; display: block; white-space: nowrap; }
+    .selection-sweep { position: fixed; pointer-events: none; z-index: 55; height: 3px; background: var(--blue-hover); transform: scaleX(0); transform-origin: left center; animation: selection-sweep .48s cubic-bezier(.18,.82,.18,1) both; }
+    @keyframes selection-sweep { 0% {transform: scaleX(0); opacity: 0;} 28% {opacity: 1;} 80% {transform: scaleX(1); opacity: 1;} 100% {transform: scaleX(1); opacity: 0;} }
+    /* Focus rings and text highlights stay native and copyable. */
     .action { position: relative; overflow: hidden; }
     .action svg { transition: transform .36s cubic-bezier(.2,.8,.2,1); }
     .action:hover svg { transform: translateX(5px); }
@@ -221,9 +228,10 @@
     @media (prefers-reduced-motion: reduce) {
       .scroll-progress { display: none; }
       .motion-capable .reveal { opacity: 1 !important; filter: none !important; transform: none !important; }
-      h1::after { transform: scaleX(1) !important; }
+      .hero-selection, .selection-sweep { display: none !important; }
       .header-inner, .header, body, .brand, .nav a::after, .repo, .repo .arrow, .contact-row, .theme-toggle svg, .action svg { transition: none !important; }
       .repo:hover, .repo:focus-visible { translate: 0 !important; }
+      .repo h3, .repo p { transition: none !important; transform: none !important; }
     }
   </style>
 </head>
@@ -249,8 +257,8 @@
   </header>
   <main id="main">
     <section class="container hero" aria-labelledby="intro-title">
-      <h1 class="reveal" id="intro-title">We're Achilles.</h1>
-      <p class="hero-copy reveal" style="--reveal-delay:130ms">We build open-source software, including FlowDE, a desktop environment designed for mobile devices. Our code lives on GitHub.</p>
+      <h1 class="reveal" id="intro-title">We're <span class="hero-word">Achilles.<span class="hero-selection" aria-hidden="true"></span></span></h1>
+      <p class="hero-copy reveal" style="--reveal-delay:130ms">We build open-source software. Our projects include Kiln GNU/Linux and FlowDE, and you can find their code on GitHub.</p>
       <div class="hero-actions reveal" style="--reveal-delay:240ms">
         <a class="action" href="#projects">Explore projects <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         <a class="minor-link" href="https://github.com/achillesorg" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
@@ -263,12 +271,17 @@
           <a class="all-repos" href="https://github.com/orgs/achillesorg/repositories" target="_blank" rel="noopener noreferrer">All repositories ↗</a>
         </div>
         <div class="repo-list">
-          <a class="repo reveal from-left" style="--reveal-delay:80ms" href="https://github.com/achillesorg/FlowDE" target="_blank" rel="noopener noreferrer">
+          <a class="repo reveal from-left" style="--reveal-delay:60ms" href="https://github.com/achillesorg/kiln-gnu-linux" target="_blank" rel="noopener noreferrer">
+            <h3>Kiln GNU/Linux</h3>
+            <p>A Debian 13-based Linux distro with its own Glaze desktop environment. Early beta.</p>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="repo reveal from-right" style="--reveal-delay:140ms" href="https://github.com/achillesorg/FlowDE" target="_blank" rel="noopener noreferrer">
             <h3>FlowDE</h3>
             <p>A desktop environment for mobile devices.</p>
             <span class="arrow" aria-hidden="true">↗</span>
           </a>
-          <a class="repo reveal from-right" style="--reveal-delay:150ms" href="https://github.com/achillesorg/achillesorg.github.io" target="_blank" rel="noopener noreferrer">
+          <a class="repo reveal from-left" style="--reveal-delay:220ms" href="https://github.com/achillesorg/achillesorg.github.io" target="_blank" rel="noopener noreferrer">
             <h3>Achilles website</h3>
             <p>The code and assets behind this site.</p>
             <span class="arrow" aria-hidden="true">↗</span>
@@ -335,22 +348,84 @@
       window.addEventListener('pageshow', onScroll);
       onScroll();
 
+      // A quick blue selection sweep on the headline. The underlying text is still real text.
+      const heroWord = document.querySelector('.hero-word');
+      const heroHighlight = document.querySelector('.hero-selection');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let highlightAnimation;
+      let hasPlayedHighlight = false;
+      const replayHighlight = () => {
+        if (reducedMotion.matches) return;
+        if (highlightAnimation) highlightAnimation.cancel();
+        highlightAnimation = heroHighlight.animate([
+          {clipPath:'inset(0 100% 0 0)', offset:0},
+          {clipPath:'inset(0 0 0 0)', offset:.42},
+          {clipPath:'inset(0 0 0 0)', offset:.65},
+          {clipPath:'inset(0 0 0 100%)', offset:1}
+        ], {duration:1450, easing:'cubic-bezier(.16,1,.3,1)'});
+      };
+      // Hover replays the highlight, while keyboard and drag selection continue to work.
+      heroWord.addEventListener('pointerenter', event => {
+        if (event.pointerType === 'mouse') replayHighlight();
+      });
+      // Animate the end of a real text selection with a fine blue underline.
+      const selectionEffects = document.createElement('div');
+      selectionEffects.setAttribute('aria-hidden','true');
+      document.body.append(selectionEffects);
+      const showSelectionSweep = () => {
+        if (reducedMotion.matches) return;
+        const sel = window.getSelection();
+        if (!sel || sel.isCollapsed || !sel.toString().trim() || sel.rangeCount === 0) return;
+        const range = sel.getRangeAt(0);
+        if (!document.querySelector('main').contains(range.commonAncestorContainer)) return;
+        const rectangles = Array.from(range.getClientRects()).filter(r => r.width > 8 && r.height > 4).slice(0,8);
+        selectionEffects.replaceChildren();
+        for (const rect of rectangles) {
+          const line = document.createElement('div');
+          line.className = 'selection-sweep';
+          line.style.left = rect.left + 'px';
+          line.style.top = (rect.bottom - 2) + 'px';
+          line.style.width = rect.width + 'px';
+          line.addEventListener('animationend', () => line.remove(), {once:true});
+          selectionEffects.append(line);
+        }
+      };
+      document.addEventListener('pointerup', showSelectionSweep, {passive:true});
+      document.addEventListener('keyup', event => {
+        if (event.key === 'Shift' || event.shiftKey) showSelectionSweep();
+      });
       const targets = [...document.querySelectorAll('.reveal')];
+      const revealTarget = target => {
+        if (target.classList.contains('in-view')) return;
+        target.classList.add('in-view');
+        if (target.id === 'intro-title' && !hasPlayedHighlight) {
+          hasPlayedHighlight = true;
+          window.setTimeout(replayHighlight, 900);
+        }
+      };
       if (root.classList.contains('motion-capable')) {
         const observer = new IntersectionObserver((entries) => {
           for (const entry of entries) {
             if (!entry.isIntersecting) continue;
-            entry.target.classList.add('in-view');
+            revealTarget(entry.target);
             observer.unobserve(entry.target);
           }
         }, { threshold: .11, rootMargin: '0px 0px -3% 0px' });
         targets.forEach(target => observer.observe(target));
+        // Catch anchors, quick scrolls, and restored pages so content never remains hidden.
+        const catchUp = () => targets.forEach(target => {
+          if (target.getBoundingClientRect().top < window.innerHeight * .92) revealTarget(target);
+        });
+        window.addEventListener('scroll', catchUp, {passive:true});
+        window.addEventListener('resize', catchUp, {passive:true});
+        catchUp();
         // Content is never left hidden if the page is restored from bfcache.
         window.addEventListener('pageshow', () => targets.forEach(target => {
           if (target.getBoundingClientRect().top < innerHeight && target.getBoundingClientRect().bottom > 0) target.classList.add('in-view');
         }));
       } else {
         targets.forEach(target => target.classList.add('in-view'));
+        if (!reducedMotion.matches) window.setTimeout(replayHighlight, 950);
       }
     })();
   </script>

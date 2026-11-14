@@ -1,7 +1,15 @@
 # Achilles website
 
-The Achilles organisation homepage is hosted via GitHub Pages from `main` and uses `achilles.mandrusia.tech` as its custom domain.
+Static GitHub Pages site for [Achilles](https://achilles.mandrusia.tech). The `CNAME` file preserves the custom domain.
 
-Features include responsive Signal branding, Arc-blue accents, a system-aware light/dark toggle (saved locally), real repository links, and the two maintainer contact emails. On systems that allow motion, entrance sequences, scroll-triggered section reveals, a scroll-position indicator, a condensed sticky header, and hover interactions are enabled. With reduced motion enabled or JavaScript disabled, the content is fully visible.
+## Features
 
-The `CNAME` file must remain in the repository to preserve the custom domain.
+- Original Achilles Signal SVG branding; solid Arc-style blue accent.
+- Animated blue selection sweep on the “Achilles.” word and a subtle underline when selecting other text. Selection stays native and copyable.
+- Scroll entrances, progress indicator, shrinking header, and responsive project cards.
+- Light/dark toggle with system-theme fallback and saved preference.
+- Links to Kiln GNU/Linux (early beta), FlowDE, and this website.
+- Two maintainer contact mailto links.
+- Reduced-motion support; no framework or external scripts.
+
+Change `index.html` on `main` to update the site.
