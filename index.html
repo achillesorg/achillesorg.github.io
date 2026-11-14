@@ -351,9 +351,48 @@
       window.addEventListener('pageshow', onScroll);
       onScroll();
 
-      // The blue word highlight stays on-screen while the pointer hovers over the word.
-      // CSS handles entrance and exit; the headline remains selectable text.
+      // Play the blue highlight once as the headline appears. Hover keeps it in place.
+      const heroWord = document.querySelector('.hero-word');
+      const heroHighlight = document.querySelector('.hero-selection');
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let activeHighlight = null;
+      let introPlayed = false;
+      const animateIntroHighlight = () => {
+        if (introPlayed || reducedMotion.matches) return;
+        introPlayed = true;
+        window.setTimeout(() => {
+          const entrance = heroHighlight.animate([
+            { clipPath: 'inset(0 100% 0 0)' },
+            { clipPath: 'inset(0 0 0 0)' }
+          ], { duration: 720, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' });
+          activeHighlight = entrance;
+          entrance.onfinish = () => {
+            if (activeHighlight !== entrance) return;
+            entrance.cancel();
+            activeHighlight = null;
+            // If the pointer is over Achilles, retain the full highlight.
+            if (heroWord.matches(':hover')) return;
+            const exit = heroHighlight.animate([
+              { clipPath: 'inset(0 0 0 0)' },
+              { clipPath: 'inset(0 0 0 100%)' }
+            ], { duration: 540, easing: 'cubic-bezier(.16,1,.3,1)' });
+            activeHighlight = exit;
+            exit.onfinish = () => {
+              if (activeHighlight !== exit) return;
+              exit.cancel();
+              activeHighlight = null;
+            };
+          };
+        }, 650);
+      };
+      // CSS handles all subsequent hovers; interrupt the intro so it never
+      // retracts underneath a pointer that's still in the headline area.
+      heroWord.addEventListener('pointerenter', () => {
+        if (activeHighlight) {
+          activeHighlight.cancel();
+          activeHighlight = null;
+        }
+      });
       // Animate the end of a real text selection with a fine blue underline.
       const selectionEffects = document.createElement('div');
       selectionEffects.setAttribute('aria-hidden','true');
@@ -384,6 +423,7 @@
       const revealTarget = target => {
         if (target.classList.contains('in-view')) return;
         target.classList.add('in-view');
+        if (target.id === 'intro-title') animateIntroHighlight();
       };
       if (root.classList.contains('motion-capable')) {
         const observer = new IntersectionObserver((entries) => {
@@ -407,6 +447,7 @@
         }));
       } else {
         targets.forEach(target => target.classList.add('in-view'));
+        animateIntroHighlight();
       }
     })();
   </script>
